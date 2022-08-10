@@ -1,4 +1,4 @@
-
+# shellcheck shell=bash
 ######################################################################
 #<
 #
@@ -18,9 +18,12 @@ p6df::modules::slack::deps() {
 #
 # Function: p6df::modules::slack::init()
 #
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
 p6df::modules::slack::init() {
 
   p6_path_if "$P6_DFZ_SRC_DIR/rockymadden/slack-cli/src"
+
+  p6_return_void
 }
