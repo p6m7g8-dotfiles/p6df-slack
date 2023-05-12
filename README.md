@@ -44,6 +44,9 @@
 
 #### p6df-slack/init.zsh:
 
+- p6df::modules::slack::chatdelete(channel, timestamp, token)
+- p6df::modules::slack::chatsend(channel, text, token)
+- p6df::modules::slack::chatupdate(channel, timestamp, text, token)
 - p6df::modules::slack::deps()
 - p6df::modules::slack::init()
 
