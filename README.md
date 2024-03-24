@@ -10,8 +10,7 @@
   - [Summary](#summary)
   - [Contributing](#contributing)
   - [Code of Conduct](#code-of-conduct)
-  - [Changes](#changes)
-    - [Usage](#usage)
+  - [Usage](#usage)
   - [Author](#author)
 
 ### Badges
@@ -34,24 +33,39 @@
 
 - [Code of Conduct](https://github.com/p6m7g8/.github/blob/master/CODE_OF_CONDUCT.md)
 
-## Changes
-
-- [Change Log](CHANGELOG.md)
-
 ## Usage
+
+
+### Aliases
+
+
+### Functions
 
 ### p6df-slack:
 
 #### p6df-slack/init.zsh:
 
-- p6df::modules::slack::chatdelete(channel, timestamp, token)
-- p6df::modules::slack::chatsend(channel, text, token)
-- p6df::modules::slack::chatupdate(channel, timestamp, text, token)
 - p6df::modules::slack::deps()
-- p6df::modules::slack::init()
+- p6df::modules::slack::init(_module, dir)
+
+
+### p6df-slack/lib:
+
+#### p6df-slack/lib/cli.sh:
+
+- p6df::modules::slack::cli::chatdelete(channel, timestamp, token)
+- p6df::modules::slack::cli::chatsend(channel, text, token)
+- p6df::modules::slack::cli::chatupdate(channel, timestamp, text, token)
 
 
 
+## Hier
+```text
+.
+└── cli.sh
+
+1 directory, 1 file
+```
 ## Author
 
 Philip M . Gollucci <pgollucci@p6m7g8.com>
