@@ -23,7 +23,7 @@ p6df::modules::slack::cli::chatdelete() {
     --data-urlencode "ts=${timestamp}" \
     --data-urlencode "token=${token}")
 
-  p6_echo $msg | jq .
+  p6_echo "$msg" | jq .
 }
 
 ######################################################################
@@ -50,7 +50,7 @@ p6df::modules::slack::cli::chatsend() {
     --data-urlencode "text=${text}" \
     --data-urlencode "token=${token}")
 
-  p6_echo $msg | jq .
+  p6_echo "$msg" | jq .
 }
 
 ######################################################################
@@ -80,5 +80,5 @@ p6df::modules::slack::cli::chatupdate() {
     --data-urlencode "text=${text}" \
     --data-urlencode "token=${token}")
 
-  p6_echo $msg | jq .
+  p6_echo "$msg" | jq .
 }
