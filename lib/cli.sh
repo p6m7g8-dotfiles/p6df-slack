@@ -2,14 +2,13 @@
 ######################################################################
 #<
 #
-# Function: p6df::modules::slack::cli::chatdelete(channel, timestamp, token)
+# Function: p6df::modules::slack::cli::chatdelete(channel, timestamp)
 #
 #  Args:
 #	channel -
 #	timestamp -
-#	token -
 #
-#  Environment:	 POST SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatdelete() {
@@ -29,14 +28,13 @@ p6df::modules::slack::cli::chatdelete() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::slack::cli::chatsend(channel, text, token)
+# Function: p6df::modules::slack::cli::chatsend(channel, text)
 #
 #  Args:
 #	channel -
 #	text -
-#	token -
 #
-#  Environment:	 POST SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatsend() {
@@ -56,15 +54,14 @@ p6df::modules::slack::cli::chatsend() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::slack::cli::chatupdate(channel, timestamp, text, token)
+# Function: p6df::modules::slack::cli::chatupdate(channel, timestamp, text)
 #
 #  Args:
 #	channel -
 #	timestamp -
 #	text -
-#	token -
 #
-#  Environment:	 POST SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatupdate() {
