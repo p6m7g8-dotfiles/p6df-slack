@@ -37,14 +37,27 @@ TODO: Add a short summary of this module.
 
 - `p6df::modules::slack::deps()`
 - `p6df::modules::slack::init(_module, dir)`
+  - Args:
+    - _module - 
+    - dir - 
 
 #### p6df-slack/lib
 
 ##### p6df-slack/lib/cli.sh
 
 - `p6df::modules::slack::cli::chatdelete(channel, timestamp)`
+  - Args:
+    - channel - 
+    - timestamp - 
 - `p6df::modules::slack::cli::chatsend(channel, text)`
+  - Args:
+    - channel - 
+    - text - 
 - `p6df::modules::slack::cli::chatupdate(channel, timestamp, text)`
+  - Args:
+    - channel - 
+    - timestamp - 
+    - text - 
 
 ## Hierarchy
 
