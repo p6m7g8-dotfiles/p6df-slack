@@ -70,6 +70,10 @@ Install and configure Slack CLI + tokenized API helpers for shell and Codex usag
     - timestamp -
     - text -
 
+##### p6df-slack/lib/slack-api
+
+- `slack-api <method> [key=value ...]`
+
 ## ENV
 
 - `SLACK_BOT_TOKEN`
@@ -84,12 +88,13 @@ Install and configure Slack CLI + tokenized API helpers for shell and Codex usag
 .
 ├── init.zsh
 ├── lib
-│   └── cli.sh
+│   ├── cli.sh
+│   └── slack-api
 ├── README.md
 └── share
     └── kb-shortcuts.png
 
-3 directories, 4 files
+3 directories, 5 files
 ```
 
 ## Author
