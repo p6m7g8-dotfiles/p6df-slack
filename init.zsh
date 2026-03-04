@@ -58,6 +58,7 @@ p6df::modules::slack::langs() {
 p6df::modules::slack::aliases::init() {
 
   p6_alias "scli" "slack"
+  p6_alias "slack-api" "$P6_DFZ_SRC_DIR/p6m7g8-dotfiles/p6df-slack/lib/slack-api"
 
   p6_return_void
 }
