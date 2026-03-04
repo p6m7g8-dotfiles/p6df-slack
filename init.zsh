@@ -66,36 +66,53 @@ p6df::modules::slack::aliases::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::slack::profile::on(profile, bot_token, app_token, team_id)
+# Function: p6df::modules::slack::profile::on(profile, env_or_token, [app_token], [team_id])
 #
 #  Args:
 #	profile -
-#	bot_token -
-#	app_token -
-#	team_id -
+#	env_or_token -
+#	OPTIONAL app_token -
+#	OPTIONAL team_id -
 #
 #  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_BOT_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
 #>
 ######################################################################
 p6df::modules::slack::profile::on() {
   local profile="$1"
-  local bot_token="$2"
+  local env_or_token="$2"
   local app_token="${3:-}"
   local team_id="${4:-}"
+
+  local bot_token="$env_or_token"
+  local cli_token="$env_or_token"
+
+  if p6_string_match_regex "$env_or_token" '(^|[[:space:]])export[[:space:]]+SLACK'; then
+    p6_run_code "$env_or_token"
+    bot_token="${SLACK_BOT_TOKEN:-}"
+    cli_token="${SLACK_CLI_TOKEN:-${SLACK_BOT_TOKEN:-}}"
+    app_token="${SLACK_APP_TOKEN:-$app_token}"
+    team_id="${SLACK_TEAM_ID:-$team_id}"
+  fi
 
   if p6_string_blank "$profile"; then
     p6_echo "error: profile must be provided" >&2
     return 1
   fi
 
-  if p6_string_blank "$bot_token"; then
-    p6_echo "error: bot_token must be provided" >&2
+  if p6_string_blank "$bot_token" && p6_string_blank "$cli_token"; then
+    p6_echo "error: slack token must be provided via token or SLACK_CLI_TOKEN/SLACK_BOT_TOKEN" >&2
     return 1
   fi
 
   p6_env_export "P6_DFZ_PROFILE_SLACK" "$profile"
-  p6_env_export "SLACK_BOT_TOKEN" "$bot_token"
-  p6_env_export "SLACK_CLI_TOKEN" "$bot_token"
+
+  if p6_string_blank_NOT "$bot_token"; then
+    p6_env_export "SLACK_BOT_TOKEN" "$bot_token"
+  fi
+
+  if p6_string_blank_NOT "$cli_token"; then
+    p6_env_export "SLACK_CLI_TOKEN" "$cli_token"
+  fi
 
   if p6_string_blank_NOT "$app_token"; then
     p6_env_export "SLACK_APP_TOKEN" "$app_token"
