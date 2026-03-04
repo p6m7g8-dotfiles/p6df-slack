@@ -33,10 +33,20 @@ p6df::modules::slack::cli::api() {
   local token
   token="$(p6df::modules::slack::cli::token)"
 
+  if [ -z "${method//[[:space:]]/}" ]; then
+    p6_echo "error: slack api method must be provided (e.g. 'chat.postMessage')" >&2
+    return 1
+  fi
+
+  if [ -z "${token//[[:space:]]/}" ]; then
+    p6_echo "error: slack token is not set; please export SLACK_BOT_TOKEN or SLACK_CLI_TOKEN" >&2
+    return 1
+  fi
+
   curl -sS -X POST "https://slack.com/api/${method}" \
     -H "Authorization: Bearer ${token}" \
     -H "Content-Type: application/json; charset=utf-8" \
-    --data "$json_payload" | jq .
+    --data-raw "$json_payload" | jq .
 }
 
 ######################################################################
@@ -48,7 +58,7 @@ p6df::modules::slack::cli::api() {
 #	channel -
 #	timestamp -
 #
-#  Environment:	 SLACK_CLI_TOKEN
+#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatdelete() {
@@ -75,7 +85,7 @@ p6df::modules::slack::cli::chatdelete() {
 #	channel -
 #	text -
 #
-#  Environment:	 SLACK_CLI_TOKEN
+#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatsend() {
@@ -103,7 +113,7 @@ p6df::modules::slack::cli::chatsend() {
 #	timestamp -
 #	text -
 #
-#  Environment:	 SLACK_CLI_TOKEN
+#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatupdate() {

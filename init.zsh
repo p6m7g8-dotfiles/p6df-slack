@@ -10,7 +10,6 @@ p6df::modules::slack::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6common
     p6m7g8-dotfiles/p6df-js
-    rockymadden/slack-cli
   )
 }
 
@@ -31,8 +30,6 @@ p6df::modules::slack::init() {
   local dir="$2"
 
   p6_bootstrap "$dir"
-
-  p6_path_if "$P6_DFZ_SRC_DIR/rockymadden/slack-cli/src"
 
   p6_return_void
 }
@@ -84,6 +81,16 @@ p6df::modules::slack::profile::on() {
   local bot_token="$2"
   local app_token="${3:-}"
   local team_id="${4:-}"
+
+  if p6_string_blank "$profile"; then
+    p6_echo "error: profile must be provided" >&2
+    return 1
+  fi
+
+  if p6_string_blank "$bot_token"; then
+    p6_echo "error: bot_token must be provided" >&2
+    return 1
+  fi
 
   p6_env_export "P6_DFZ_PROFILE_SLACK" "$profile"
   p6_env_export "SLACK_BOT_TOKEN" "$bot_token"

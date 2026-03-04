@@ -76,6 +76,7 @@ Install and configure Slack CLI + tokenized API helpers for shell and Codex usag
 - `SLACK_CLI_TOKEN`
 - `SLACK_APP_TOKEN`
 - `SLACK_TEAM_ID`
+- `P6_DFZ_PROFILE_SLACK`
 
 ## Hierarchy
 
