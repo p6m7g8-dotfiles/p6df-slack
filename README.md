@@ -17,7 +17,7 @@
 
 ## Summary
 
-TODO: Add a short summary of this module.
+Install and configure Slack CLI + tokenized API helpers for shell and Codex usage.
 
 ## Contributing
 
@@ -35,16 +35,27 @@ TODO: Add a short summary of this module.
 
 ##### p6df-slack/init.zsh
 
+- `p6df::modules::slack::aliases::init()`
 - `p6df::modules::slack::deps()`
 - `p6df::modules::slack::init(_module, dir)`
   - Args:
     - _module - 
     - dir - 
+- `p6df::modules::slack::langs()`
+- `p6df::modules::slack::profile::off()`
+- `p6df::modules::slack::profile::on(profile, bot_token, app_token, team_id)`
+  - Args:
+    - profile -
+    - bot_token -
+    - app_token -
+    - team_id -
 
 #### p6df-slack/lib
 
 ##### p6df-slack/lib/cli.sh
 
+- `str str = p6df::modules::slack::cli::token()`
+- `p6df::modules::slack::cli::api(method, [json_payload={}])`
 - `p6df::modules::slack::cli::chatdelete(channel, timestamp)`
   - Args:
     - channel - 
@@ -58,6 +69,13 @@ TODO: Add a short summary of this module.
     - channel - 
     - timestamp - 
     - text - 
+
+## ENV
+
+- `SLACK_BOT_TOKEN`
+- `SLACK_CLI_TOKEN`
+- `SLACK_APP_TOKEN`
+- `SLACK_TEAM_ID`
 
 ## Hierarchy
 
