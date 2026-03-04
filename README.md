@@ -43,7 +43,7 @@ Install and configure Slack CLI + tokenized API helpers for shell and Codex usag
     - dir -
 - `p6df::modules::slack::langs()`
 - `p6df::modules::slack::profile::off()`
-- `p6df::modules::slack::profile::on(profile, env_or_token, [app_token], [team_id])`
+- `p6df::modules::slack::profile::on(profile, env_or_cli_token, [app_token], [team_id])`
   - Args:
     - profile -
     - bot_token -
@@ -76,7 +76,6 @@ Install and configure Slack CLI + tokenized API helpers for shell and Codex usag
 
 ## ENV
 
-- `SLACK_BOT_TOKEN`
 - `SLACK_CLI_TOKEN`
 - `SLACK_APP_TOKEN`
 - `SLACK_TEAM_ID`
