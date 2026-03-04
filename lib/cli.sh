@@ -7,11 +7,11 @@
 #  Returns:
 #	str - str
 #
-#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::token() {
-  local token="${SLACK_BOT_TOKEN:-$SLACK_CLI_TOKEN}"
+  local token="${SLACK_CLI_TOKEN:-}"
   p6_return_str "$token"
 }
 
@@ -24,7 +24,7 @@ p6df::modules::slack::cli::token() {
 #	method -
 #	json_payload -
 #
-#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::api() {
@@ -39,7 +39,7 @@ p6df::modules::slack::cli::api() {
   fi
 
   if [ -z "${token//[[:space:]]/}" ]; then
-    p6_echo "error: slack token is not set; please export SLACK_BOT_TOKEN or SLACK_CLI_TOKEN" >&2
+    p6_echo "error: slack token is not set; please export SLACK_CLI_TOKEN" >&2
     return 1
   fi
 
@@ -58,7 +58,7 @@ p6df::modules::slack::cli::api() {
 #	channel -
 #	timestamp -
 #
-#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatdelete() {
@@ -85,7 +85,7 @@ p6df::modules::slack::cli::chatdelete() {
 #	channel -
 #	text -
 #
-#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatsend() {
@@ -113,7 +113,7 @@ p6df::modules::slack::cli::chatsend() {
 #	timestamp -
 #	text -
 #
-#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
+#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatupdate() {
