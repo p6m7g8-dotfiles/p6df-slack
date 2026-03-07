@@ -174,7 +174,7 @@ p6df::modules::slack::profile::off() {
 ######################################################################
 p6df::modules::slack::mcp() {
 
-  p6_js_npm_global_install "@modelcontextprotocol/server-slack"
+  p6df::core::homebrew::cli::brew::install slack-mcp-server
 
   p6_return_void
 }
