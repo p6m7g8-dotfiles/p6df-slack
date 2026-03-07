@@ -18,8 +18,9 @@
 
 ## Summary
 
-p6df module for Slack: CLI aliases, profile switching (`SLACK_CLI_TOKEN`), and
-MCP server (`@modelcontextprotocol/server-slack`) with `SLACK_BOT_TOKEN` mapping.
+p6df module for Slack: CLI tools (`slack-cli`), profile switching
+(`SLACK_BOT_TOKEN` via `SLACK_CLI_TOKEN`), and MCP server
+(`slack-mcp-server` via brew) for AI-driven workspace interactions.
 
 ## Contributing
 
