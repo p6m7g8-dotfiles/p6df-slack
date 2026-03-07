@@ -66,6 +66,37 @@ p6df::modules::slack::aliases::init() {
 ######################################################################
 #<
 #
+# Function: str str = p6df::modules::slack::prompt::mod()
+#
+#  Returns:
+#	str - str
+#
+#  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
+#>
+######################################################################
+p6df::modules::slack::prompt::mod() {
+  local str
+
+  if p6_string_blank_NOT "$P6_DFZ_PROFILE_SLACK"; then
+    str="slack:\t\t  $P6_DFZ_PROFILE_SLACK:"
+
+    if p6_string_blank_NOT "$SLACK_TEAM_ID"; then
+      str=$(p6_string_append "$str" "$SLACK_TEAM_ID" " ")
+    fi
+    if p6_string_blank_NOT "$SLACK_CLI_TOKEN"; then
+      str=$(p6_string_append "$str" "cli" "/")
+    fi
+    if p6_string_blank_NOT "$SLACK_APP_TOKEN"; then
+      str=$(p6_string_append "$str" "app" "/")
+    fi
+  fi
+
+  p6_return_str "$str"
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::slack::profile::on(profile, env_or_cli_token, [app_token], [team_id])
 #
 #  Args:
