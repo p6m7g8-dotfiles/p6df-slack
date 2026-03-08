@@ -18,9 +18,9 @@
 
 ## Summary
 
-p6df module for Slack: CLI tools (`slack-cli`), profile switching
-(`SLACK_BOT_TOKEN` via `SLACK_CLI_TOKEN`), and MCP server
-(`slack-mcp-server` via brew) for AI-driven workspace interactions.
+Integrates Slack into the p6df shell framework. Provides profile-based token management
+(`SLACK_BOT_TOKEN` derived from `SLACK_CLI_TOKEN`), MCP server installation, and Slack API
+CLI helpers.
 
 ## Contributing
 
@@ -51,7 +51,6 @@ p6df module for Slack: CLI tools (`slack-cli`), profile switching
     - dir
 - `p6df::modules::slack::langs()`
 - `p6df::modules::slack::mcp()`
-- `p6df::modules::slack::mcp::env()`
 - `p6df::modules::slack::profile::off()`
 - `p6df::modules::slack::profile::on(profile, env_or_cli_token, [app_token=], [team_id=])`
   - Args:
@@ -65,10 +64,10 @@ p6df module for Slack: CLI tools (`slack-cli`), profile switching
 
 ##### p6df-slack/lib/cli.sh
 
-- `p6df::modules::slack::cli::api(method, [json_payload={])`
+- `p6df::modules::slack::cli::api(method, [json_payload={}])`
   - Args:
     - method
-    - OPTIONAL json_payload - [{]
+    - OPTIONAL json_payload - [{}]
 - `p6df::modules::slack::cli::chatdelete(channel, timestamp)`
   - Args:
     - channel

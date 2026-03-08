@@ -2,10 +2,10 @@
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::slack::cli::token()
+# Function: str token = p6df::modules::slack::cli::token()
 #
 #  Returns:
-#	str - str
+#	str - token
 #
 #  Environment:	 SLACK_CLI_TOKEN
 #>
@@ -22,7 +22,7 @@ p6df::modules::slack::cli::token() {
 #
 #  Args:
 #	method -
-#	json_payload -
+#	OPTIONAL json_payload - [{}]
 #
 #  Environment:	 SLACK_CLI_TOKEN
 #>
@@ -58,7 +58,6 @@ p6df::modules::slack::cli::api() {
 #	channel -
 #	timestamp -
 #
-#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatdelete() {
@@ -85,7 +84,6 @@ p6df::modules::slack::cli::chatdelete() {
 #	channel -
 #	text -
 #
-#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatsend() {
@@ -113,7 +111,6 @@ p6df::modules::slack::cli::chatsend() {
 #	timestamp -
 #	text -
 #
-#  Environment:	 SLACK_CLI_TOKEN
 #>
 ######################################################################
 p6df::modules::slack::cli::chatupdate() {
