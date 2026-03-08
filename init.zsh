@@ -105,7 +105,7 @@ p6df::modules::slack::prompt::mod() {
 #	OPTIONAL app_token - []
 #	OPTIONAL team_id - []
 #
-#  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
+#  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_BOT_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
 #>
 ######################################################################
 p6df::modules::slack::profile::on() {
@@ -135,6 +135,7 @@ p6df::modules::slack::profile::on() {
 
   p6_env_export "P6_DFZ_PROFILE_SLACK" "$profile"
   p6_env_export "SLACK_CLI_TOKEN" "$cli_token"
+  p6_env_export "SLACK_BOT_TOKEN" "$cli_token"
 
   if p6_string_blank_NOT "$app_token"; then
     p6_env_export "SLACK_APP_TOKEN" "$app_token"
@@ -152,13 +153,14 @@ p6df::modules::slack::profile::on() {
 #
 # Function: p6df::modules::slack::profile::off()
 #
-#  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
+#  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_BOT_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
 #>
 ######################################################################
 p6df::modules::slack::profile::off() {
 
   p6_env_export_un P6_DFZ_PROFILE_SLACK
   p6_env_export_un SLACK_CLI_TOKEN
+  p6_env_export_un SLACK_BOT_TOKEN
   p6_env_export_un SLACK_APP_TOKEN
   p6_env_export_un SLACK_TEAM_ID
 
@@ -174,26 +176,7 @@ p6df::modules::slack::profile::off() {
 ######################################################################
 p6df::modules::slack::mcp() {
 
-  p6df::core::homebrew::cli::brew::install slack-mcp-server
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::slack::mcp::env()
-#
-#  Environment:	 SLACK_BOT_TOKEN SLACK_CLI_TOKEN
-#>
-######################################################################
-p6df::modules::slack::mcp::env() {
-
-  if p6_string_blank_NOT "$SLACK_CLI_TOKEN"; then
-    p6_env_export "SLACK_BOT_TOKEN" "$SLACK_CLI_TOKEN"
-  else
-    p6_env_export_un "SLACK_BOT_TOKEN"
-  fi
+  p6_js_npm_global_install "@modelcontextprotocol/server-slack"
 
   p6_return_void
 }
