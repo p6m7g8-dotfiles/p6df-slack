@@ -18,9 +18,9 @@
 
 ## Summary
 
-Integrates Slack into the p6df shell framework. Provides profile-based token management
-(`SLACK_BOT_TOKEN` derived from `SLACK_CLI_TOKEN`), MCP server installation, and Slack API
-CLI helpers.
+p6df module for Slack: CLI tools (`slack-cli`), profile switching
+(`SLACK_BOT_TOKEN` derived from `SLACK_CLI_TOKEN`), and MCP server
+(`@modelcontextprotocol/server-slack` via npm) for AI-driven Slack interactions.
 
 ## Contributing
 
