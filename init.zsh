@@ -8,6 +8,7 @@
 ######################################################################
 p6df::modules::slack::deps() {
   ModuleDeps=(
+    p6m7g8-dotfiles/p6common
     p6m7g8-dotfiles/p6df-js
   )
 }

@@ -45,49 +45,22 @@ p6df module for Slack: CLI tools (`@slack/cli`), profile switching
 - `p6df::modules::slack::langs()`
 - `p6df::modules::slack::mcp()`
 - `p6df::modules::slack::profile::off()`
-- `p6df::modules::slack::profile::on(profile, env_or_cli_token, [app_token=], [team_id=])`
+- `p6df::modules::slack::profile::on(profile, code)`
   - Args:
     - profile
-    - env_or_cli_token
-    - OPTIONAL app_token - []
-    - OPTIONAL team_id - []
+    - code
 - `str str = p6df::modules::slack::prompt::mod()`
-
-#### p6df-slack/lib
-
-##### p6df-slack/lib/cli.sh
-
-- `p6df::modules::slack::cli::api(method, [json_payload={}])`
-  - Args:
-    - method
-    - OPTIONAL json_payload - [{}]
-- `p6df::modules::slack::cli::chatdelete(channel, timestamp)`
-  - Args:
-    - channel
-    - timestamp
-- `p6df::modules::slack::cli::chatsend(channel, text)`
-  - Args:
-    - channel
-    - text
-- `p6df::modules::slack::cli::chatupdate(channel, timestamp, text)`
-  - Args:
-    - channel
-    - timestamp
-    - text
-- `str token = p6df::modules::slack::cli::token()`
 
 ## Hierarchy
 
 ```text
 .
 ├── init.zsh
-├── lib
-│   └── cli.sh
 ├── README.md
 └── share
     └── kb-shortcuts.png
 
-3 directories, 4 files
+2 directories, 3 files
 ```
 
 ## Author
