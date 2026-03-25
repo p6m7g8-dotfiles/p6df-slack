@@ -8,59 +8,8 @@
 ######################################################################
 p6df::modules::slack::deps() {
   ModuleDeps=(
-    p6m7g8-dotfiles/p6common
     p6m7g8-dotfiles/p6df-js
   )
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::slack::init(_module, dir)
-#
-#  Args:
-#	_module -
-#	dir -
-#
-#>
-######################################################################
-p6df::modules::slack::init() {
-  local _module="$1"
-  local dir="$2"
-
-  p6_bootstrap "$dir"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::slack::langs()
-#
-#>
-######################################################################
-p6df::modules::slack::langs() {
-
-  p6_js_npm_global_install "@slack/cli"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::slack::aliases::init()
-#
-#  Environment:	 P6_DFZ_SRC_DIR
-#>
-######################################################################
-p6df::modules::slack::aliases::init() {
-
-  p6_alias "scli" "slack"
-  p6_alias "slack-api" "$P6_DFZ_SRC_DIR/p6m7g8-dotfiles/p6df-slack/lib/slack-api"
-
-  p6_return_void
 }
 
 ######################################################################
@@ -112,7 +61,27 @@ p6df::modules::slack::profile::on() {
 
   p6_run_code "$code"
 
+  if p6_string_blank "$profile"; then
+    p6_echo "error: profile must be provided" >&2
+    return 1
+  fi
+
+  if p6_string_blank "${SLACK_CLI_TOKEN:-}"; then
+    p6_echo "error: SLACK_CLI_TOKEN must be provided" >&2
+    return 1
+  fi
+
   p6_env_export "P6_DFZ_PROFILE_SLACK" "$profile"
+  p6_env_export "SLACK_CLI_TOKEN" "${SLACK_CLI_TOKEN:-}"
+  p6_env_export "SLACK_BOT_TOKEN" "${SLACK_CLI_TOKEN:-}"
+
+  if p6_string_blank_NOT "${SLACK_APP_TOKEN:-}"; then
+    p6_env_export "SLACK_APP_TOKEN" "$SLACK_APP_TOKEN"
+  fi
+
+  if p6_string_blank_NOT "${SLACK_TEAM_ID:-}"; then
+    p6_env_export "SLACK_TEAM_ID" "$SLACK_TEAM_ID"
+  fi
 
   p6_return_void
 }
@@ -147,10 +116,7 @@ p6df::modules::slack::profile::off() {
 ######################################################################
 p6df::modules::slack::mcp() {
 
-  p6_js_npm_global_install "@modelcontextprotocol/server-slack"
-
-  p6df::modules::anthropic::mcp::server::add "slack" "npx" "-y" "@modelcontextprotocol/server-slack"
-  p6df::modules::openai::mcp::server::add "slack" "npx" "-y" "@modelcontextprotocol/server-slack"
+  claude mcp add --transport http "claude.ai Slack" "https://mcp.slack.com/mcp"
 
   p6_return_void
 }

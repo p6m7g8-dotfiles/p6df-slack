@@ -7,7 +7,6 @@
 - [Contributing](#contributing)
 - [Code of Conduct](#code-of-conduct)
 - [Usage](#usage)
-  - [Aliases](#aliases)
   - [Functions](#functions)
 - [Hierarchy](#hierarchy)
 - [Author](#author)
@@ -20,7 +19,7 @@
 
 p6df module for Slack: CLI tools (`@slack/cli`), profile switching
 (`SLACK_BOT_TOKEN` derived from `SLACK_CLI_TOKEN`), and MCP server
-(`@modelcontextprotocol/server-slack` via npm) for AI-driven Slack interactions.
+(claude.ai marketplace Slack at `https://mcp.slack.com/mcp`) for AI-driven Slack interactions.
 
 ## Contributing
 
@@ -32,18 +31,12 @@ p6df module for Slack: CLI tools (`@slack/cli`), profile switching
 
 ## Usage
 
-### Aliases
-
-- `scli` -> `slack`
-- `slack-api` -> `$P6_DFZ_SRC_DIR/p6m7g8-dotfiles/p6df-slack/lib/slack-api`
-
 ### Functions
 
 #### p6df-slack
 
 ##### p6df-slack/init.zsh
 
-- `p6df::modules::slack::aliases::init()`
 - `p6df::modules::slack::deps()`
 - `p6df::modules::slack::init(_module, dir)`
   - Args:
@@ -89,13 +82,12 @@ p6df module for Slack: CLI tools (`@slack/cli`), profile switching
 .
 ├── init.zsh
 ├── lib
-│   ├── cli.sh
-│   └── slack-api
+│   └── cli.sh
 ├── README.md
 └── share
     └── kb-shortcuts.png
 
-3 directories, 5 files
+3 directories, 4 files
 ```
 
 ## Author
