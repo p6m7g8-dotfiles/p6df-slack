@@ -97,53 +97,22 @@ p6df::modules::slack::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::slack::profile::on(profile, env_or_cli_token, [app_token=], [team_id=])
+# Function: p6df::modules::slack::profile::on(profile, code)
 #
 #  Args:
 #	profile -
-#	env_or_cli_token -
-#	OPTIONAL app_token - []
-#	OPTIONAL team_id - []
+#	code - shell code block (export SLACK_CLI_TOKEN=... SLACK_BOT_TOKEN=... SLACK_APP_TOKEN=... SLACK_TEAM_ID=...)
 #
 #  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_BOT_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
 #>
 ######################################################################
 p6df::modules::slack::profile::on() {
   local profile="$1"
-  local env_or_cli_token="$2"
-  local app_token="${3:-}"
-  local team_id="${4:-}"
+  local code="$2"
 
-  local cli_token="$env_or_cli_token"
-
-  if p6_string_match_regex "$env_or_cli_token" '(^|[[:space:]])export[[:space:]]+SLACK'; then
-    p6_run_code "$env_or_cli_token"
-    cli_token="${SLACK_CLI_TOKEN:-}"
-    app_token="${SLACK_APP_TOKEN:-$app_token}"
-    team_id="${SLACK_TEAM_ID:-$team_id}"
-  fi
-
-  if p6_string_blank "$profile"; then
-    p6_echo "error: profile must be provided" >&2
-    return 1
-  fi
-
-  if p6_string_blank "$cli_token"; then
-    p6_echo "error: SLACK_CLI_TOKEN must be provided" >&2
-    return 1
-  fi
+  p6_run_code "$code"
 
   p6_env_export "P6_DFZ_PROFILE_SLACK" "$profile"
-  p6_env_export "SLACK_CLI_TOKEN" "$cli_token"
-  p6_env_export "SLACK_BOT_TOKEN" "$cli_token"
-
-  if p6_string_blank_NOT "$app_token"; then
-    p6_env_export "SLACK_APP_TOKEN" "$app_token"
-  fi
-
-  if p6_string_blank_NOT "$team_id"; then
-    p6_env_export "SLACK_TEAM_ID" "$team_id"
-  fi
 
   p6_return_void
 }
@@ -151,18 +120,20 @@ p6df::modules::slack::profile::on() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::slack::profile::off()
+# Function: p6df::modules::slack::profile::off(code)
+#
+#  Args:
+#	code - shell code block previously passed to profile::on
 #
 #  Environment:	 P6_DFZ_PROFILE_SLACK SLACK_APP_TOKEN SLACK_BOT_TOKEN SLACK_CLI_TOKEN SLACK_TEAM_ID
 #>
 ######################################################################
 p6df::modules::slack::profile::off() {
+  local code="$1"
 
+  p6_env_unset_from_code "$code"
   p6_env_export_un P6_DFZ_PROFILE_SLACK
-  p6_env_export_un SLACK_CLI_TOKEN
-  p6_env_export_un SLACK_BOT_TOKEN
-  p6_env_export_un SLACK_APP_TOKEN
-  p6_env_export_un SLACK_TEAM_ID
+  p6_env_export_un SLACK_BOT_TOKEN  # derived from SLACK_CLI_TOKEN
 
   p6_return_void
 }
@@ -177,6 +148,9 @@ p6df::modules::slack::profile::off() {
 p6df::modules::slack::mcp() {
 
   p6_js_npm_global_install "@modelcontextprotocol/server-slack"
+
+  p6df::modules::anthropic::mcp::server::add "slack" "npx" "-y" "@modelcontextprotocol/server-slack"
+  p6df::modules::openai::mcp::server::add "slack" "npx" "-y" "@modelcontextprotocol/server-slack"
 
   p6_return_void
 }

@@ -11,7 +11,7 @@
 #>
 ######################################################################
 p6df::modules::slack::cli::token() {
-  local token="${SLACK_CLI_TOKEN:-}"
+  local token="$SLACK_CLI_TOKEN"
   p6_return_str "$token"
 }
 
