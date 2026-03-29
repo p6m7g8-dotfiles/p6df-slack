@@ -74,7 +74,7 @@ p6df::modules::slack::profile::on() {
 
   p6_env_export "P6_DFZ_PROFILE_SLACK" "$profile"
   p6_env_export "SLACK_CLI_TOKEN" "${SLACK_CLI_TOKEN:-}"
-  p6_env_export "SLACK_BOT_TOKEN" "${SLACK_CLI_TOKEN:-}"
+  p6_env_export "SLACK_BOT_TOKEN" "${SLACK_BOT_TOKEN:-$SLACK_CLI_TOKEN}"
 
   if p6_string_blank_NOT "${SLACK_APP_TOKEN:-}"; then
     p6_env_export "SLACK_APP_TOKEN" "$SLACK_APP_TOKEN"
