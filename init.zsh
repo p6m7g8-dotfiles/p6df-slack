@@ -117,6 +117,11 @@ p6df::modules::slack::profile::off() {
 ######################################################################
 p6df::modules::slack::mcp() {
 
+  if ! command -v claude >/dev/null 2>&1; then
+    p6_echo "error: claude CLI is required for slack MCP setup" >&2
+    return 1
+  fi
+
   claude mcp add --transport http "claude.ai Slack" "https://mcp.slack.com/mcp"
 
   p6_return_void
