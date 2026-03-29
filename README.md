@@ -38,11 +38,6 @@ p6df module for Slack: CLI tools (`@slack/cli`), profile switching
 ##### p6df-slack/init.zsh
 
 - `p6df::modules::slack::deps()`
-- `p6df::modules::slack::init(_module, dir)`
-  - Args:
-    - _module
-    - dir
-- `p6df::modules::slack::langs()`
 - `p6df::modules::slack::mcp()`
 - `p6df::modules::slack::profile::off()`
 - `p6df::modules::slack::profile::on(profile, code)`
