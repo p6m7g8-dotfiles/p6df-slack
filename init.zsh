@@ -26,7 +26,7 @@ p6df::modules::slack::deps() {
 ######################################################################
 p6df::modules::slack::profile::mod() {
 
-  p6_return_words 'slack' "$"
+  p6_return_words 'slack' '$SLACK_TEAM_ID' '$SLACK_CLI_TOKEN'
 }
 
 ######################################################################
