@@ -17,9 +17,7 @@
 
 ## Summary
 
-p6df module for Slack: CLI tools (`@slack/cli`), profile switching
-(`SLACK_BOT_TOKEN` derived from `SLACK_CLI_TOKEN`), and MCP server
-(claude.ai marketplace Slack at `https://mcp.slack.com/mcp`) for AI-driven Slack interactions.
+TODO: Add a short summary of this module.
 
 ## Contributing
 
@@ -39,12 +37,7 @@ p6df module for Slack: CLI tools (`@slack/cli`), profile switching
 
 - `p6df::modules::slack::deps()`
 - `p6df::modules::slack::mcp()`
-- `p6df::modules::slack::profile::off()`
-- `p6df::modules::slack::profile::on(profile, code)`
-  - Args:
-    - profile
-    - code
-- `str str = p6df::modules::slack::prompt::mod()`
+- `words slack = p6df::modules::slack::profile::mod()`
 
 ## Hierarchy
 
