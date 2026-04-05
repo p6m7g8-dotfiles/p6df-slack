@@ -29,12 +29,12 @@ p6df::modules::slack::mcp() {
 ######################################################################
 #<
 #
-# Function: words slack $SLACK_TEAM_ID = p6df::modules::slack::profile::mod()
+# Function: words slack = p6df::modules::slack::profile::mod()
 #
 #  Returns:
-#	words - slack $SLACK_TEAM_ID
+#	words - slack
 #
-#  Environment:	 SLACK_TEAM_ID
+#  Environment:	 SLACK_CLI_TOKEN SLACK_TEAM_ID
 #>
 ######################################################################
 p6df::modules::slack::profile::mod() {
