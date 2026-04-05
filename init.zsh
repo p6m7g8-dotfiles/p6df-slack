@@ -16,6 +16,19 @@ p6df::modules::slack::deps() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::slack::mcp()
+#
+#>
+######################################################################
+p6df::modules::slack::mcp() {
+
+  claude mcp add --transport http "claude.ai Slack" "https://mcp.slack.com/mcp"
+
+  p6_return_void
+}
+######################################################################
+#<
+#
 # Function: words slack $SLACK_TEAM_ID = p6df::modules::slack::profile::mod()
 #
 #  Returns:
@@ -29,16 +42,3 @@ p6df::modules::slack::profile::mod() {
   p6_return_words 'slack' '$SLACK_TEAM_ID' '$SLACK_CLI_TOKEN'
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::slack::mcp()
-#
-#>
-######################################################################
-p6df::modules::slack::mcp() {
-
-  claude mcp add --transport http "claude.ai Slack" "https://mcp.slack.com/mcp"
-
-  p6_return_void
-}
